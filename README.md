@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Revio — Admin Dashboard
 
-## Getting Started
+The internal dashboard behind the [Revio car finance website](https://github.com/hanianawazkhan001-ops/revio-website). Staff use it to manage dealerships, car inventory and admin users, and to review reported issues.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Secure admin login**, with routes protected by middleware
+- **Invite-only admin accounts:** existing admins send an invite, and the new admin accepts it and sets a password
+- **Dealer management:** add, view and edit partner dealerships
+- **Inventory management:** add, edit and browse cars, with automatic vehicle details lookup by registration
+- **Issues view** for tracking problems with listings
+- **Admin user management:** see and manage who has access
+- **Light/dark theme toggle** and a mobile-friendly navigation menu
+
+## Tech stack
+
+- **Next.js** (App Router) and **TypeScript**
+- **Supabase**: PostgreSQL database and authentication
+- **Next.js API routes** for admin actions (cars, dealers, admins)
+- **Next.js middleware** for route protection
+- **DVLA VES API** for vehicle lookups
+
+## Project structure
+
+```
+src/
+  app/admin/(auth)/        → login and accept-invite pages
+  app/admin/(dashboard)/   → dashboard, dealers, inventory, issues, admins
+  app/api/admin/           → admin API routes
+  components/admin/        → tables, forms, navigation, theme toggle
+  lib/                     → admin auth, Supabase clients, helpers
+  middleware.ts            → protects /admin routes
+supabase/                  → SQL for database tables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file with your own keys:
 
-## Learn More
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+DVLA_VES_API_KEY=
+```
 
-To learn more about Next.js, take a look at the following resources:
+Then open http://localhost:3000/admin.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Hania**.
