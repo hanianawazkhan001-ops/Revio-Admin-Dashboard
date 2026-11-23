@@ -1,7 +1,7 @@
 # Revio — Admin Dashboard
 
 The internal dashboard behind the [Revio car finance website](https://github.com/hanianawazkhan001-ops/revio-website). Staff use it to manage dealerships, car inventory and admin users, and to review reported issues.
-
+**Live login page:** [revio-app-one.vercel.app/admin](https://revio-app-one.vercel.app/admin) (staff only, see screenshots below for the dashboard)
 ## Features
 
 - **Secure admin login**, with routes protected by middleware
